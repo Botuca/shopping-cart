@@ -25,7 +25,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import { ProductCard } from '../components/index';
+import ProductCard from '../components/product-card.vue';
 
 export default {
   name: "Teste",
