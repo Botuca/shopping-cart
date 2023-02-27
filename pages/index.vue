@@ -1,32 +1,46 @@
 <template>
   <section class="text-gray-600">
-    <header class="fixed flex items-center justify-center h-16 bg-gray-100 w-full">
-      <h1>
-        Shooping Cart do BOTUCA
+    <header class="flex fixed items-center justify-center h-16 bg-gray-100 w-full">
+      <h1 class="font-bold text-xl">
+        SHOPPING CART
       </h1>
     </header>
-    <main class="pt-16">
-      <footer class="flex h-16 bg-gray-100" >Criado por: Luiz Gustavo Eburneo</footer>
+    <main>
+      <div class="pt-16 flex flex-row justify-center items-start">
+        <div class="mt-4 p-4 h-96 w-64 bg-gray-100 rounded">
+          {{ categories }}
+        </div>
+        <section class="p-4 grid grid-cols-3 justify-items-center gap-1">
+          <product-card
+            v-for="product in products"
+            :key="product.id"
+            v-bind="{ product }"
+          />
+        </section>
+      </div>
     </main>
+    <footer class="flex h-28 bg-gray-100 text-xs w-full" >Criado por: Luiz Gustavo Eburneo</footer>
   </section>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
+import { ProductCard } from '../components/index';
 
 export default {
   name: "Teste",
-  data() {
-    return {
-      products: [],
-    };
+  components: {
+    ProductCard
   },
-  async created() {
-    console.log(this.$store.state);
-    this.products = await this.getProducts();
+  computed: {
+    ...mapState('products', ['products', 'categories'])
+  },
+  async mounted() {
+    await this.getProducts();
+    await this.getCategories();
   },
   methods: {
-    ...mapActions({ getProducts: 'products/getProducts' }),
+    ...mapActions('products', ['getProducts', 'getCategories']),
   }
 }
 </script>
