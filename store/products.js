@@ -1,19 +1,33 @@
 export const state = () => ({
   products: [],
+  categories: [],
 });
 
 export const getters = {};
 
 export const mutations = {
-  setProducts(products) {
+  setProducts(state, products) {
     state.products = products;
+  },
+  setCategories(state, categories) {
+    state.categories = categories;
   },
 };
 
 export const actions = {
   async getProducts({ commit }) {
-    await fetch('https://dummyjson.com/products')
-      .then((res) => res.json())
-      .then(({ products }) => commit('setProducts', products));
+    const products = await this.$axios.$get(
+      'https://fakestoreapi.com/products'
+    );
+
+    commit('setProducts', products);
+  },
+
+  async getCategories({ commit }) {
+    const categories = await this.$axios.$get(
+      'https://fakestoreapi.com/products/categories'
+    );
+
+    commit('setCategories', categories);
   },
 };
