@@ -1,9 +1,9 @@
 <template>
   <section>
     <div
-      class="h-96 w-64 border border-gray-300 bg-gray-50 rounded"
+      class="h-96 w-64 border border-gray-300"
     >
-      <img :src="product.image" class="object-contain h-48 w-48 m-auto pt-2"/>
+      <img :src="product.image" class="object-contain h-48 w-48 m-auto pt-2 cursor-pointer" @click="$emit('onClickProduct', product)" />
       <div class="p-2">
         <span class="pt-4 text-ellipsis h-16 font-bold">{{ product.title }}</span>
         <div class="flex flex-col">
