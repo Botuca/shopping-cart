@@ -1,11 +1,6 @@
 <template>
   <section class="text-gray-600">
-    <header class="flex fixed items-center justify-center h-16 bg-gray-300 w-full border-b border-gray-400">
-      <h1 class="font-bold text-xl">
-        SHOPPING CART
-      </h1>
-      <i class="fa-solid fa-cart-shopping absolute right-5 text-2xl"></i>
-    </header>
+    <header-base />
     <main>
       <div class="pt-16 flex flex-row justify-center items-start">
         <categories-radio v-bind="{ categories, categorySelected }" @onChangeCategory="onChangeCategory" />
@@ -27,14 +22,15 @@
 import { mapActions, mapState } from 'vuex';
 import ProductCard from '../components/product-card.vue';
 import CategoriesRadio from '../components/categories-radio.vue';
+import HeaderBase from '../components/header.vue';
 
 export default {
   name: "HomePage",
   components: {
     ProductCard,
-    CategoriesRadio
+    CategoriesRadio,
+    HeaderBase,
   },
-
   computed: {
     ...mapState('products', ['products', 'categories']),
     categorySelected() {
