@@ -15,9 +15,11 @@ export const mutations = {
 };
 
 export const actions = {
-  async getProducts({ commit }) {
+  async getProducts({ commit }, category) {
     const products = await this.$axios.$get(
-      'https://fakestoreapi.com/products'
+      category
+        ? `https://fakestoreapi.com/products/category/${category}`
+        : 'https://fakestoreapi.com/products'
     );
 
     commit('setProducts', products);
