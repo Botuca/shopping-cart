@@ -3,12 +3,17 @@
     <h1 class="font-bold text-xl">
       SHOPPING CART
     </h1>
-    <i class="fa-solid fa-cart-shopping absolute right-5 text-2xl"></i>
+    <i class="fa-solid fa-cart-shopping absolute right-5 text-2xl cursor-pointer" @click="onClickIcon"/>
   </header>
 </template>
 
 <script>
 export default {
   name: 'HeaderBase',
+  methods: {
+    onClickIcon() {
+      this.$emit('clickIcon');
+    }
+  }
 }
 </script>

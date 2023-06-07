@@ -1,6 +1,7 @@
 export const state = () => ({
   products: [],
   categories: [],
+  showCart: false,
 });
 
 export const getters = {};
@@ -11,6 +12,10 @@ export const mutations = {
   },
   setCategories(state, categories) {
     state.categories = categories;
+  },
+
+  genericMutation(state, { property, value }) {
+    state[property] = value;
   },
 };
 
@@ -31,5 +36,12 @@ export const actions = {
     );
 
     commit('setCategories', categories);
+  },
+
+  toggleCart({ commit, state }) {
+    commit('genericMutation', {
+      property: 'showCart',
+      value: !state.showCart,
+    });
   },
 };

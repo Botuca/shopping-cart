@@ -1,6 +1,6 @@
 <template>
   <section class="text-gray-600">
-    <header-base />
+    <header-base @clickIcon="onClickIcon"/>
     <main>
       <div class="pt-16 flex flex-row justify-center items-start">
         <categories-radio v-bind="{ categories, categorySelected }" @onChangeCategory="onChangeCategory" />
@@ -9,12 +9,27 @@
             v-for="product in products"
             v-bind="{ product }"
             :key="product.id"
-            @onClickProduct="onClickProduct"
           />
         </section>
       </div>
     </main>
-    <footer class="flex h-28 bg-gray-300 text-xs w-full border-t border-gray-400">Criado por: Luiz Gustavo Eburneo</footer>
+    <footer class="flex flex-col h-28 bg-gray-300 text-xs w-full border-t border-gray-400 p-2">
+      <span>Criado por: <b>Luiz Gustavo Eburneo</b></span>
+      <div class="text-2xl pt-2">
+        <a href="https://github.com/Botuca" target="_blank" class="pr-2">
+          <i class="fa-brands fa-github"/>
+        </a>
+        <a href="https://www.linkedin.com/in/luizeburneo" target="_blank" class="pr-2">
+          <i class="fa-brands fa-linkedin"/>
+        </a>
+        <a href="https://www.instagram.com/gustavo_eburneo" target="_blank">
+          <i class="fa-brands fa-square-instagram"/>
+        </a>
+      </div>
+    </footer>
+    <div v-if="showCart" class="fixed border border-gray-400 bg-white top-16 right-0 m-2 w-1/4 h-3/5 shadow-lg">
+      ALO
+    </div>
   </section>
 </template>
 
@@ -32,7 +47,7 @@ export default {
     HeaderBase,
   },
   computed: {
-    ...mapState('products', ['products', 'categories']),
+    ...mapState('products', ['products', 'categories', 'showCart']),
     categorySelected() {
       return this.$route?.query?.category || '';
     }
@@ -42,7 +57,7 @@ export default {
     await this.getCategories();
   },
   methods: {
-    ...mapActions('products', ['getProducts', 'getCategories']),
+    ...mapActions('products', ['getProducts', 'getCategories', 'toggleCart']),
     async onChangeCategory(category) {
       this.$router.push({
         query: {
@@ -52,7 +67,9 @@ export default {
 
       await this.getProducts(category);
     },
-    onClickProduct(product) {}
+    onClickIcon() {
+      this.toggleCart();
+    }
   }
 }
 </script>

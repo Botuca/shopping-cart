@@ -1,7 +1,7 @@
 <template>
   <div class="mt-4 p-4 h-46 w-64 bg-gray-200 border border-gray-400">
     <input v-model="localCategory" type="radio" :value="''" @change="$emit('onChangeCategory', localCategory)">
-    <label>all</label>
+    <label>ALL</label>
     <div v-for="(category, index) in categories" :key="index">
       <input 
         v-model="localCategory"
@@ -10,7 +10,7 @@
         :value="category"
         @change="$emit('onChangeCategory', category)"
       >
-      <label for="categories">{{ category }}</label>
+      <label for="categories">{{ category.toUpperCase() }}</label>
     </div>
   </div>
 </template>
