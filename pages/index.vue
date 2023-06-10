@@ -13,23 +13,8 @@
         </section>
       </div>
     </main>
-    <footer class="flex flex-col h-28 bg-gray-300 text-xs w-full border-t border-gray-400 p-2">
-      <span>Criado por: <b>Luiz Gustavo Eburneo</b></span>
-      <div class="text-2xl pt-2">
-        <a href="https://github.com/Botuca" target="_blank" class="pr-2">
-          <i class="fa-brands fa-github"/>
-        </a>
-        <a href="https://www.linkedin.com/in/luizeburneo" target="_blank" class="pr-2">
-          <i class="fa-brands fa-linkedin"/>
-        </a>
-        <a href="https://www.instagram.com/gustavo_eburneo" target="_blank">
-          <i class="fa-brands fa-square-instagram"/>
-        </a>
-      </div>
-    </footer>
-    <div v-if="showCart" class="fixed border border-gray-400 bg-white top-16 right-0 m-2 w-1/4 h-3/5 shadow-lg">
-      ALO
-    </div>
+    <footer-base />
+    <cart v-bind="{ showCart }"/>
   </section>
 </template>
 
@@ -37,7 +22,9 @@
 import { mapActions, mapState } from 'vuex';
 import ProductCard from '../components/product-card.vue';
 import CategoriesRadio from '../components/categories-radio.vue';
-import HeaderBase from '../components/header.vue';
+import HeaderBase from './header.vue';
+import FooterBase from './footer.vue';
+import Cart from './cart.vue';
 
 export default {
   name: "HomePage",
@@ -45,6 +32,8 @@ export default {
     ProductCard,
     CategoriesRadio,
     HeaderBase,
+    FooterBase,
+    Cart,
   },
   computed: {
     ...mapState('products', ['products', 'categories', 'showCart']),
