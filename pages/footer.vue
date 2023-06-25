@@ -1,9 +1,7 @@
 <template>
-  <footer
-    class="flex flex-col h-28 bg-gray-300 text-xs w-full border-t border-gray-400 p-2"
-  >
+  <footer class="footer-base bg-gray-300 text-xs border-t border-gray-400">
     <span>Criado por: <b>Luiz Gustavo Eburneo</b></span>
-    <div class="text-2xl pt-2">
+    <div class="text-2xl ml-2">
       <a href="https://github.com/Botuca" target="_blank" class="pr-2">
         <i class="fa-brands fa-github" />
       </a>
@@ -24,5 +22,15 @@
 <script>
   export default {
     name: 'FooterBase',
-  }
+  };
 </script>
+
+<style scoped>
+  .footer-base {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px;
+    height: 53px;
+  }
+</style>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="h-96 w-64 border border-gray-300">
+    <div class="h-96 w-64 border border-gray-300 rounded">
       <img
         :src="product.image"
         class="object-contain h-48 w-48 m-auto pt-2 cursor-pointer"
@@ -25,12 +25,9 @@
           </span>
           <div class="pt-2 flex justify-between items-center">
             <span class="text-red-500 text-xl font-bold">
-              ${{ product.price }}
+              ${{ product.price }} -- {{ product.isInCart }}
             </span>
-            <button
-              class="text-xs bg-yellow-400 rounded px-2 py-1 font-bold hover:bg-yellow-500"
-              @click="onClickIcon"
-            >
+            <button :class="{ teste: true }" @click="onClickAdd(product)">
               Add to
               <i class="fa-solid fa-cart-shopping text-xs" />
             </button>
@@ -50,7 +47,12 @@
         required: true,
       },
     },
-  }
+    methods: {
+      onClickAdd(product) {
+        this.$emit('click-add', product);
+      },
+    },
+  };
 </script>
 
 <style scoped>
@@ -60,5 +62,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .teste {
+    @apply text-xs bg-yellow-400 rounded px-2 py-1 font-bold hover:bg-yellow-500;
   }
 </style>

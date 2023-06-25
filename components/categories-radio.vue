@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 p-4 h-46 w-64 bg-gray-200 border border-gray-400">
+  <div class="mt-4 p-4 h-46 w-64 bg-gray-200 border border-gray-400 rounded">
     <input
       v-model="localCategory"
       type="radio"
@@ -36,7 +36,7 @@
     data() {
       return {
         localCategory: this.categorySelected,
-      }
+      };
     },
-  }
+  };
 </script>
