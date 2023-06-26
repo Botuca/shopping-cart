@@ -25,10 +25,14 @@
           </span>
           <div class="pt-2 flex justify-between items-center">
             <span class="text-red-500 text-xl font-bold">
-              ${{ product.price }} -- {{ product.isInCart }}
+              ${{ product.price }}
             </span>
-            <button :class="{ teste: true }" @click="onClickAdd(product)">
-              Add to
+            <button
+              class="addCart"
+              :class="{ addCart__added: isProductInCart }"
+              @click="onClickAdd(product)"
+            >
+              {{ productTextInCart }}
               <i class="fa-solid fa-cart-shopping text-xs" />
             </button>
           </div>
@@ -45,6 +49,14 @@
       product: {
         type: Object,
         required: true,
+      },
+    },
+    computed: {
+      isProductInCart() {
+        return this.product.isInCart;
+      },
+      productTextInCart() {
+        return this.isProductInCart ? 'Added to' : 'Add to';
       },
     },
     methods: {
@@ -64,7 +76,11 @@
     text-overflow: ellipsis;
   }
 
-  .teste {
+  .addCart {
     @apply text-xs bg-yellow-400 rounded px-2 py-1 font-bold hover:bg-yellow-500;
+  }
+
+  .addCart__added {
+    @apply text-xs bg-green-400 rounded px-2 py-1 font-bold hover:bg-green-500;
   }
 </style>

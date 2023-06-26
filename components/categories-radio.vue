@@ -1,12 +1,12 @@
 <template>
-  <div class="mt-4 p-4 h-46 w-64 bg-gray-200 border border-gray-400 rounded">
+  <div class="categories-radio">
     <input
       v-model="localCategory"
       type="radio"
       :value="''"
       @change="$emit('onChangeCategory', localCategory)"
     />
-    <label>ALL</label>
+    <label>ALL PRODUCTS</label>
     <div v-for="(category, index) in categories" :key="index">
       <input
         v-model="localCategory"
@@ -40,3 +40,10 @@
     },
   };
 </script>
+
+<style scoped>
+  .categories-radio {
+    height: fit-content;
+    @apply p-4 w-64 bg-gray-200 border border-gray-400 rounded;
+  }
+</style>

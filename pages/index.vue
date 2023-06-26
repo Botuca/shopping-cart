@@ -2,12 +2,14 @@
   <div>
     <section class="text-gray-600">
       <header-base @clickIcon="onClickIcon" />
-      <main>
-        <div class="pt-16 flex flex-row justify-center items-start">
+      <main class="flex h-full">
+        <div class="absolute left-4 top-20">
           <categories-radio
             v-bind="{ categories, categorySelected }"
             @onChangeCategory="onChangeCategory"
           />
+        </div>
+        <div class="pt-16 mx-auto">
           <section class="p-4 grid grid-cols-3 justify-items-center gap-4">
             <product-card
               v-for="product in products"
@@ -72,7 +74,7 @@
         this.toggleCart();
       },
       onClickAdd(product) {
-        this.addProductToCart(product);
+        !product.isInCart && this.addProductToCart(product);
       },
     },
   };

@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex fixed items-center justify-center h-16 bg-gray-300 w-full border-b border-gray-400"
+    class="flex fixed items-center justify-center h-16 bg-gray-300 w-full border-b border-gray-400 z-10"
   >
     <h1 class="font-bold text-xl">SHOPPING CART</h1>
     <i
@@ -15,8 +15,8 @@
     name: 'HeaderBase',
     methods: {
       onClickIcon() {
-        this.$emit('clickIcon')
+        this.$emit('clickIcon');
       },
     },
-  }
+  };
 </script>
