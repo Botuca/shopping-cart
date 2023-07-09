@@ -12,6 +12,9 @@ export const getters = {
       isInCart: productsInCart.some(({ id }) => id === product.id),
     }));
   },
+  calculateTotalPrice({ productsInCart }) {
+    return productsInCart.reduce((acc, obj) => acc + obj.price, 0);
+  },
 };
 
 export const mutations = {

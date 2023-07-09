@@ -1,34 +1,51 @@
 <template>
   <div
     v-if="showCart"
-    class="fixed border border-gray-400 bg-white top-20 right-0 w-1/3 h-3/5 shadow-lg overflow-y-auto overflow-x-hidden p-4 rounded"
+    ref="cartModal"
+    class="fixed border border-gray-400 bg-white top-20 right-0 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600"
   >
-    <div v-for="product in productsInCart" :key="product.id">
-      <div class="cart__content border border-gray-400 rounded">
-        <div class="px-2 my-2">
-          <img
-            :src="product.image"
-            class="object-contain h-20 w-20"
-            @click="$emit('onClickProduct', product)"
-          />
-        </div>
-        <div
-          class="px-2 my-2 border-l border-gray-200 flex flex-col justify-between"
-        >
-          <p class="text-ellipsis">{{ product.title }}</p>
-          <div class="flex flex-row justify-between">
-            <p class="pr-8">Qtd: 1</p>
-            <p class="text-red-500 text-xl font-bold">${{ product.price }}</p>
+    <div class="p-4 border-b border-gray-400 text-lg font-bold">
+      Seu carrinho de compras
+    </div>
+    <div v-if="productsInCart.length" class="m-4 flex flex-col">
+      <div v-for="product in productsInCart" :key="product.id">
+        <div class="cart__content border border-gray-400 rounded">
+          <div class="px-2 my-2">
+            <img
+              :src="product.image"
+              class="object-contain h-20 w-20"
+              @click="$emit('onClickProduct', product)"
+            />
+          </div>
+          <div
+            class="px-2 my-2 border-l border-gray-200 flex flex-col justify-between"
+          >
+            <p class="text-ellipsis">{{ product.title }}</p>
+            <div class="flex flex-row justify-between">
+              <p class="pr-8">Qtd: 1</p>
+              <p class="text-red-500 text-xl font-bold">${{ product.price }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <button @click="clearCart">limpar</button>
+    <div v-else class="flex justify-center m-4 text-xs">
+      Nenhum produto adicionado no carrinho
+    </div>
+    <footer
+      v-if="productsInCart.length"
+      class="border-t border-gray-400 py-2 pl-4 pr-6 flex justify-end text-sm"
+    >
+      <span class="text-xl">
+        Total:
+        <span class="text-red-500 font-bold"> ${{ calculateTotalPrice }} </span>
+      </span>
+    </footer>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
 
   export default {
     name: 'Cart',
@@ -40,6 +57,17 @@
     },
     computed: {
       ...mapState('products', ['productsInCart']),
+      ...mapGetters('products', ['calculateTotalPrice']),
+    },
+    watch: {
+      productsInCart: {
+        handler() {
+          this.$nextTick(() => {
+            const conteudo = this.$refs.cartModal;
+            conteudo.scrollTop = conteudo.scrollHeight;
+          });
+        },
+      },
     },
     methods: {
       ...mapActions('products', ['clearCart']),
