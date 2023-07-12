@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="h-96 w-64 border border-gray-300 rounded">
+    <div class="h-96 w-64 border border-gray-300 rounded bg-white">
       <img
         :src="product.image"
         class="object-contain h-48 w-48 m-auto pt-2 cursor-pointer"

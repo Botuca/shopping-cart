@@ -2,7 +2,7 @@
   <div>
     <section class="text-gray-600">
       <header-base @clickIcon="onClickIcon" />
-      <main class="flex h-full">
+      <main class="flex h-full bg-gray-200">
         <div class="absolute left-4 top-20">
           <categories-radio
             v-bind="{ categories, categorySelected }"

@@ -1,5 +1,7 @@
 <template>
-  <footer class="footer-base bg-gray-300 text-xs border-t border-gray-400">
+  <footer
+    class="footer-base bg-gray-700 text-xs border-t border-gray-400 text-white"
+  >
     <span>Criado por: <b>Luiz Gustavo Eburneo</b></span>
     <div class="text-2xl ml-2">
       <a href="https://github.com/Botuca" target="_blank" class="pr-2">

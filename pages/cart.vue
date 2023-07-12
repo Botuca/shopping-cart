@@ -4,7 +4,7 @@
     ref="cartModal"
     class="fixed border border-gray-400 bg-white top-20 right-0 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600"
   >
-    <div class="p-4 border-b border-gray-400 text-lg font-bold">
+    <div class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700">
       Seu carrinho de compras
     </div>
     <div v-if="productsInCart.length" class="m-4 flex flex-col">
@@ -18,11 +18,20 @@
             />
           </div>
           <div
-            class="px-2 my-2 border-l border-gray-200 flex flex-col justify-between"
+            class="px-2 my-2 border-l border-gray-300 flex flex-col justify-between"
           >
             <p class="text-ellipsis">{{ product.title }}</p>
             <div class="flex flex-row justify-between">
-              <p class="pr-8">Qtd: 1</p>
+              <div class="flex flex-row items-center">
+                <p>Qtd: 1</p>
+                <i class="fa-solid fa-grip-lines-vertical px-2 text-gray-300" />
+                <button
+                  class="text-xs text-blue-900 hover:underline"
+                  @click="$emit('onDeleteProduct', product)"
+                >
+                  Excluir
+                </button>
+              </div>
               <p class="text-red-500 text-xl font-bold">${{ product.price }}</p>
             </div>
           </div>
@@ -62,10 +71,12 @@
     watch: {
       productsInCart: {
         handler() {
-          this.$nextTick(() => {
-            const conteudo = this.$refs.cartModal;
-            conteudo.scrollTop = conteudo.scrollHeight;
-          });
+          if (this.showCart) {
+            this.$nextTick(() => {
+              const content = this.$refs.cartModal;
+              content.scrollTop = content.scrollHeight;
+            });
+          }
         },
       },
     },

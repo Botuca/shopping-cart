@@ -44,6 +44,6 @@
 <style scoped>
   .categories-radio {
     height: fit-content;
-    @apply p-4 w-64 bg-gray-200 border border-gray-400 rounded;
+    @apply p-4 w-64 bg-white border border-gray-400 rounded font-bold;
   }
 </style>
