@@ -2,9 +2,11 @@
   <div
     v-if="showCart"
     ref="cartModal"
-    class="fixed border border-gray-400 bg-white top-20 right-0 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600"
+    class="fixed border border-gray-400 bg-white top-24 right-0 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600 z-10"
   >
-    <div class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700">
+    <div
+      class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700 text-white"
+    >
       Seu carrinho de compras
     </div>
     <div v-if="productsInCart.length" class="m-4 flex flex-col">
@@ -38,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="flex justify-center m-4 text-xs">
+    <div v-else class="flex justify-center m-8 text-xs">
       Nenhum produto adicionado no carrinho
     </div>
     <footer
