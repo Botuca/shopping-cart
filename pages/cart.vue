@@ -2,12 +2,16 @@
   <div
     v-if="showCart"
     ref="cartModal"
-    class="fixed border border-gray-400 bg-white top-24 right-0 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600 z-10"
+    class="fixed border border-gray-400 bg-white top-12 right-4 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600 z-10"
   >
     <div
-      class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700 text-white"
+      class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700 text-white flex justify-between items-center"
     >
-      Seu carrinho de compras
+      <span>Seu carrinho de compras</span>
+      <i
+        class="fa-solid fa-circle-xmark cursor-pointer"
+        @click="$emit('close')"
+      />
     </div>
     <div v-if="productsInCart.length" class="m-4 flex flex-col">
       <div v-for="product in productsInCart" :key="product.id">
@@ -16,7 +20,7 @@
             <img
               :src="product.image"
               class="object-contain h-20 w-20"
-              @click="$emit('onClickProduct', product)"
+              @click="$emit('on-click-product', product)"
             />
           </div>
           <div
@@ -29,7 +33,7 @@
                 <i class="fa-solid fa-grip-lines-vertical px-2 text-gray-300" />
                 <button
                   class="text-xs text-blue-900 hover:underline"
-                  @click="$emit('onDeleteProduct', product)"
+                  @click="$emit('on-delete-product', product)"
                 >
                   Excluir
                 </button>

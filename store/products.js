@@ -30,6 +30,11 @@ export const mutations = {
   setProductInCart(state, product) {
     state.productsInCart.push(product);
   },
+  deleteProductFromCart(state, productId) {
+    state.productsInCart = state.productsInCart.filter(
+      (product) => product.id !== productId,
+    );
+  },
 };
 
 export const actions = {
@@ -60,6 +65,10 @@ export const actions = {
 
   addProductToCart({ commit }, product) {
     commit('setProductInCart', product);
+  },
+
+  deleteProductFromCart({ commit }, product) {
+    commit('deleteProductFromCart', product.id);
   },
 
   clearCart({ commit }) {

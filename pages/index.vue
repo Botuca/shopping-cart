@@ -3,7 +3,7 @@
     <section class="text-gray-600">
       <header-base
         v-bind="{ categories }"
-        @on-click-icon="onClickIcon"
+        @on-click-icon="onShowCart"
         @on-click-category="onClickCategory"
       />
       <main class="flex h-full bg-gray-200">
@@ -20,7 +20,11 @@
       </main>
     </section>
     <footer-base />
-    <cart v-bind="{ showCart }" />
+    <cart
+      v-bind="{ showCart }"
+      @on-delete-product="onDeleteProduct"
+      @close="onShowCart"
+    />
   </div>
 </template>
 
@@ -56,8 +60,9 @@
         'getCategories',
         'toggleCart',
         'addProductToCart',
+        'deleteProductFromCart',
       ]),
-      onClickIcon() {
+      onShowCart() {
         this.toggleCart();
       },
       onClickAdd(product) {
@@ -71,6 +76,9 @@
         });
 
         await this.getProducts(category);
+      },
+      onDeleteProduct(product) {
+        this.deleteProductFromCart(product);
       },
     },
   };
