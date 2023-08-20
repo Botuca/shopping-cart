@@ -11,7 +11,7 @@
     </div>
     <div class="flex flex-row w-full bg-gray-500 items-center font-bold">
       <div
-        class="w-24 text-center px-4 py-1 hover:border-white transition border border-transparent cursor-pointer"
+        class="w-24 text-center px-4 py-1 cursor-pointer hover:bg-gray-200 hover:text-gray-600 transition"
         @click="onClickCategory()"
       >
         HOME
@@ -20,7 +20,7 @@
         <div
           v-for="(category, index) in categories"
           :key="index"
-          class="text-center px-4 py-1 hover:border-white transition border border-transparent cursor-pointer"
+          class="text-center px-4 py-1 cursor-pointer hover:bg-gray-200 hover:text-gray-600 transition"
           @click="onClickCategory(category)"
         >
           <a>
