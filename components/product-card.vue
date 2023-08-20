@@ -4,7 +4,7 @@
       <img
         :src="product.image"
         class="object-contain h-48 w-48 m-auto pt-2 cursor-pointer"
-        @click="$emit('onClickProduct', product)"
+        @click="$emit('on-click-product', product)"
       />
       <div class="p-2">
         <span class="pt-4 text-ellipsis h-16 font-bold">

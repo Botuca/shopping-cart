@@ -7,7 +7,7 @@
     <div
       class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700 text-white flex justify-between items-center"
     >
-      <span>Seu carrinho de compras</span>
+      <span>SHOPPING CART</span>
       <i
         class="fa-solid fa-circle-xmark cursor-pointer"
         @click="$emit('close')"

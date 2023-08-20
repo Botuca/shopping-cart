@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="footer-base bg-gray-700 text-xs border-t border-gray-400 text-white"
+    class="footer-base bg-gray-700 text-xs border-t border-gray-400 text-white absolute"
   >
     <span>Criado por: <b>Luiz Gustavo Eburneo</b></span>
     <div class="text-2xl ml-2">
