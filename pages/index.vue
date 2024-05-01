@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapGetters, mapState } from 'vuex';
   import ProductCard from '../components/product-card.vue';
 
   export default {
@@ -28,8 +28,17 @@
     layout: 'base',
     computed: {
       ...mapGetters('products', ['products']),
+      ...mapState('products', ['productsInCart']),
       categorySelected() {
         return this.$route?.query?.category || '';
+      },
+    },
+    watch: {
+      productsInCart: {
+        immediate: true,
+        handler() {
+          localStorage.setItem('productsInCart', this.productsInCart);
+        },
       },
     },
     async mounted() {
@@ -45,9 +54,10 @@
       onClickAdd(product) {
         !product.isInCart && this.addProductToCart(product);
       },
-      onClickProduct() {
+      onClickProduct(product) {
         this.$router.push({
-          name: 'product',
+          name: 'product-id',
+          params: { id: product.id },
         });
       },
     },

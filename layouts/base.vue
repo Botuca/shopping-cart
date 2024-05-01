@@ -5,7 +5,7 @@
       @on-click-icon="toggleCart"
       @on-click-category="onClickCategory"
     />
-    <Nuxt class="pt-24 text-gray-600 h-full bg-gray-200" />
+    <Nuxt class="pt-24 text-gray-600 bg-gray-200" />
     <footer-base />
     <cart
       v-bind="{ showCart }"

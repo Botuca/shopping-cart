@@ -48,6 +48,14 @@ export const actions = {
     commit('setProducts', products);
   },
 
+  async getProduct({ commit }, productId) {
+    const product = await this.$axios.$get(
+      `https://fakestoreapi.com/products/${productId}`,
+    );
+
+    return product;
+  },
+
   async getCategories({ commit }) {
     const categories = await this.$axios.$get(
       'https://fakestoreapi.com/products/categories',
