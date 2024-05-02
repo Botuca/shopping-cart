@@ -52,7 +52,9 @@
         'deleteProductFromCart',
       ]),
       onClickAdd(product) {
-        !product.isInCart && this.addProductToCart(product);
+        !product.isInCart
+          ? this.addProductToCart(product)
+          : this.deleteProductFromCart(product);
       },
       onClickProduct(product) {
         this.$router.push({

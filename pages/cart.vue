@@ -2,7 +2,7 @@
   <div
     v-if="showCart"
     ref="cartModal"
-    class="fixed border border-gray-400 bg-white top-12 right-4 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600 z-10"
+    class="fixed border border-gray-400 bg-white top-14 right-4 w-1/3 max-h-96 shadow-lg overflow-y-auto overflow-x-hidden rounded text-gray-600 z-10"
   >
     <div
       class="p-4 border-b border-gray-400 text-lg font-bold bg-gray-700 text-white flex justify-between items-center"
