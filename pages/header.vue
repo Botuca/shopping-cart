@@ -4,10 +4,19 @@
   >
     <div class="h-16 flex items-center justify-center items-center">
       <h1 class="font-bold text-xl">SHOPPING CART</h1>
-      <i
-        class="fa-solid fa-cart-shopping absolute right-5 text-2xl cursor-pointer"
-        @click="onClickIcon"
-      />
+      <div class="absolute right-5">
+        <i
+          class="fa-solid fa-cart-shopping relative text-2xl cursor-pointer"
+          @click="onClickIcon"
+        >
+          <p
+            v-if="!!productsCounter"
+            class="bg-red-500 rounded-full absolute -bottom-1 -left-3 text-xs text-center px-1"
+          >
+            {{ productsCounter }}
+          </p>
+        </i>
+      </div>
     </div>
     <div class="flex flex-row w-full bg-gray-500 items-center font-bold">
       <div
@@ -33,6 +42,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'HeaderBase',
     props: {
@@ -40,6 +51,9 @@
         type: Array,
         required: true,
       },
+    },
+    computed: {
+      ...mapGetters('products', ['productsCounter']),
     },
     methods: {
       onClickIcon() {

@@ -15,6 +15,9 @@ export const getters = {
   calculateTotalPrice({ productsInCart }) {
     return productsInCart.reduce((acc, obj) => acc + obj.price, 0);
   },
+  productsCounter({ productsInCart }) {
+    return productsInCart.length < 99 ? productsInCart.length : '+99';
+  },
 };
 
 export const mutations = {
@@ -46,6 +49,14 @@ export const actions = {
     );
 
     commit('setProducts', products);
+  },
+
+  async getProduct({ commit }, productId) {
+    const product = await this.$axios.$get(
+      `https://fakestoreapi.com/products/${productId}`,
+    );
+
+    return product;
   },
 
   async getCategories({ commit }) {
